@@ -10,6 +10,7 @@ import { environment } from '../environments/environment.development';
 import { AlertComponent } from "./shared/alert/alert.component";
 import { AlertPipe } from './pipes/alert.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   bootstrap: [AppComponent],
   providers: [
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-    provideAuth(() => getAuth())
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
   ]
 })
 export class AppModule { }

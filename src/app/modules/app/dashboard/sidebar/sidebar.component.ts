@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@services/auth.service';
 import { SidebarService } from '@services/sidebar.service';
-import { faUser, faSignOut, faClose, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faSignOut, faClose, faBars } from '@fortawesome/free-solid-svg-icons';
 import { map } from 'rxjs';
 import { UserService } from '@services/user.service';
+import { MENU_ROUTES } from '@constants/routes.const';
+
 
 @Component({
   selector: 'app-sidebar',
@@ -12,8 +14,9 @@ import { UserService } from '@services/user.service';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
-  readonly faUser = faUser
+  readonly MENU_ROUTES = MENU_ROUTES
   readonly faSignOut = faSignOut
+
 
   readonly menuIcon$
   readonly userImgClass$
@@ -22,6 +25,7 @@ export class SidebarComponent {
   readonly photoURL$
   readonly displayName$
   readonly email$
+
   constructor(
     public sidebarService: SidebarService,
     private _userService:UserService,

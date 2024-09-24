@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidebarComponent } from "./dashboard/sidebar/sidebar.component";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TasksListComponent } from './tasks-list/tasks-list.component';
 
 
 
@@ -12,7 +13,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
   declarations: [
     DashboardComponent,
-    SidebarComponent
+    SidebarComponent,
+    TasksListComponent,
   ],
   imports: [
     CommonModule,

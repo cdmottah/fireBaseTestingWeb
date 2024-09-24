@@ -31,10 +31,18 @@
 
   <div class=" gap-2 col-start-1 -col-end-1 flex flex-col" [ngClass]="{'ml-2':(sidebarService.isSideBarOpen$ | async)}">
 
-    <div class="grid hover:bg-gray-300 cursor-pointer p-2 rounded" [ngClass]="menuItemClasses$|async">
-      <fa-icon [icon]="faUser" class="place-self-center"></fa-icon>
-      <span class="ms-3" *ngIf="sidebarService.isSideBarOpen$ | async">Dashboard</span>
+
+    <div class="grid hover:bg-gray-300 cursor-pointer p-2 rounded"
+    [routerLink]="route.redirectTo"
+    [ngClass]="menuItemClasses$|async"
+    *ngFor="let route of MENU_ROUTES"
+    routerLinkActive="bg-gray-400 text-indigo-800"
+    >
+      <fa-icon [icon]="route.icon" class="place-self-center"></fa-icon>
+      <span class="ms-3" *ngIf="sidebarService.isSideBarOpen$ | async">{{route.name}}</span>
     </div>
+
+
 
     <div class="grid hover:bg-gray-300 cursor-pointer p-2 rounded" [ngClass]="menuItemClasses$|async"
       (click)="signOut()">
