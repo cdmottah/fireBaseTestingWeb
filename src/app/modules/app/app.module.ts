@@ -5,7 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidebarComponent } from "./dashboard/sidebar/sidebar.component";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { TasksListComponent } from './tasks-list/tasks-list.component';
+import { TasksListComponent } from './tasks/tasks-list/tasks-list.component';
+import { ColumnTaskComponent } from './tasks/column-task/column-task.component';
 
 
 
@@ -15,6 +16,7 @@ import { TasksListComponent } from './tasks-list/tasks-list.component';
     DashboardComponent,
     SidebarComponent,
     TasksListComponent,
+    ColumnTaskComponent
   ],
   imports: [
     CommonModule,

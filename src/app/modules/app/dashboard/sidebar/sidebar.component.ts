@@ -4,7 +4,7 @@ import { AuthService } from '@services/auth.service';
 import { SidebarService } from '@services/sidebar.service';
 import { faSignOut, faClose, faBars } from '@fortawesome/free-solid-svg-icons';
 import { map } from 'rxjs';
-import { UserService } from '@services/user.service';
+
 import { MENU_ROUTES } from '@constants/routes.const';
 
 
@@ -22,13 +22,12 @@ export class SidebarComponent {
   readonly userImgClass$
   readonly menuContentClasses$
   readonly menuItemClasses$
-  readonly photoURL$
-  readonly displayName$
-  readonly email$
+  readonly photoURL
+  readonly displayName
+  readonly email
 
   constructor(
     public sidebarService: SidebarService,
-    private _userService:UserService,
     private _authService: AuthService,
     private _router: Router
   ) {
@@ -37,9 +36,9 @@ export class SidebarComponent {
     this.menuContentClasses$ = this.sidebarService.isSideBarOpen$.pipe(map(res => (res) ? 'grid-cols-[min-content_1fr]' : 'grid-cols-min justify-center'))
     this.menuItemClasses$ = this.sidebarService.isSideBarOpen$.pipe(map(res => (res) ? 'grid-cols-[min-content_1fr]' : 'grid-cols-min'))
 
-    this.photoURL$ = this._userService.user$.pipe(map(res => (res) ? res.photoURL : 'defaultUser.svg'))
-    this.displayName$ = this._userService.user$.pipe(map(res => (res) ? res.displayName : 'Anonimo'))
-    this.email$ = this._userService.user$.pipe(map(res => (res) ? res.email : ''))
+    this.photoURL = this._authService.user?.photoURL || 'defaultUser.svg'
+    this.displayName = this._authService.user?.displayName || 'Anonimo'
+    this.email = this._authService.user?.email || ''
   }
 
   toogleSideBar() {

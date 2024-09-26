@@ -1,0 +1,34 @@
+<!-- Main modal -->
+<div
+  class="fixed grid place-items-center overflow-y-auto overflow-x-hidden z-50 bg-gray-900 dark:bg-gray-900 bg-opacity-50 dark:bg-opacity-50 md:inset-0 h-[100dvh] w-[100dvw]"
+  [ngClass]="show$ |async">
+  <div class="relative p-4 w-full max-w-2xl max-h-full">
+
+    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+
+      <!-- Modal header -->
+      <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+        <h3 class="text-xl font-semibold text-gray-900 dark:text-dark-title-1">
+          <ng-container *ngIf="(modalContent$ | async)?.header as header" [ngTemplateOutlet]="header"></ng-container>
+
+        </h3>
+        <button type="button" (click)="close()"
+          class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
+          <fa-icon [icon]="faClose" ></fa-icon>
+          <span class="sr-only">Close modal</span>
+        </button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="p-4 md:p-5 space-y-4">
+        <ng-container *ngIf="(modalContent$ | async)?.body as body" [ngTemplateOutlet]="body"></ng-container>
+
+      </div>
+
+      <!-- Modal footer -->
+      <div class="flex justify-end items-center gap-4 p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+        <ng-container *ngIf="(modalContent$ | async)?.footer as footer" [ngTemplateOutlet]="footer"></ng-container>
+      </div>
+    </div>
+  </div>
+</div>

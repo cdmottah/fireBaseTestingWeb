@@ -11,11 +11,13 @@ import { AlertComponent } from "./shared/alert/alert.component";
 import { AlertPipe } from './pipes/alert.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { ModalComponent } from './shared/modal/modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AlertComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

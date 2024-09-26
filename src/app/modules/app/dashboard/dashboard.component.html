@@ -1,7 +1,7 @@
 <div class="grid relative w-[100dvw] h-[100dvh] grid-cols-[min-content_1fr] top-0 left-0 z-40 overflow-hidden">
   <app-sidebar class="h-screen p-4 overflow-y-auto bg-white dark:bg-gray-800 overflow-x-hidden"
     [ngClass]="menuClass$|async"></app-sidebar>
-  <div class="py-4 px-4">
+  <div class="py-4 px-4 overflow-x-auto">
     <router-outlet></router-outlet>
   </div>
 </div>

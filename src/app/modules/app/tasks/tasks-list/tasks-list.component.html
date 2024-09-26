@@ -1,0 +1,20 @@
+<h1 class="text-2xl text-center font-bold text-gray-800 dark:text-dark-title-1 mb-6">List of tasks</h1>
+
+
+  <!-- Grid for columns -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+
+    <!-- Backlog Column -->
+    <tasks-column-task title="backlog" [tasks]="(backlog$|async) || []"></tasks-column-task>
+
+    <!-- To Do Column -->
+    <tasks-column-task title="to-do" [tasks]="(todo$|async) || []"></tasks-column-task>
+
+    <!-- WIP Column -->
+    <tasks-column-task title="wip" [tasks]="(wip$|async) || []"></tasks-column-task>
+
+    <!-- Done Column -->
+    <tasks-column-task title="done" [tasks]="(done$|async) || []"></tasks-column-task>
+
+  </div>
+

@@ -1,0 +1,84 @@
+<div class="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden mt-16 dark:bg-gray-700">
+
+  <div class="flex justify-between m-2 ">
+    <h1 class="text-white-title-1 font-bold text-2xl uppercase dark:text-dark-title-1">{{title}}</h1>
+    <button (click)="openModalCreateTask(header,body,footer)"  class="bg-success hover:bg-success-dark dark:bg-success dark:hover:bg-success-dark rounded px-2">
+      <fa-icon [icon]="faPlus" class="place-self-center"></fa-icon>
+    </button>
+  </div>
+
+  <ul class="divide-y divide-gray-200 px-4 dark:divide-gray-700 " >
+
+    <li *ngFor="let task of tasks">
+      <div class=" py-4 ml-3 text-gray-900 gap-0 dark:text-gray-300 flex flex-col justify-start border-t border-gray-200 rounded-b">
+          <span class="text-lg font-medium">{{task.title}}</span>
+          <!-- <span class="text-md font-normal">{{task.description}}</span> -->
+          <span class="text-sm ml-auto font-thin text-gray-500 dark:text-gray-400">{{task.createdDate | date}} </span>
+      </div>
+    </li>
+
+
+  </ul>
+</div>
+
+
+
+<ng-template #header>Crear tarea</ng-template>
+
+<ng-template #body>
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="w-full max-w-sm mx-auto px-4 py-2">
+
+    <!-- Input para el título de la tarea -->
+    <div class="flex flex-col mb-4">
+      <label for="title" class="text-gray-700 dark:text-gray-300">Título</label>
+      <input id="title" formControlName="title"
+        class="appearance-none bg-transparent border-b-2 border-teal-500 w-full text-gray-700 py-1 px-2 focus:outline-none dark:text-gray-300 dark:bg-gray-700"
+        type="text" placeholder="Título de la tarea" required>
+    </div>
+
+    <!-- Input para la descripción -->
+    <div class="flex flex-col mb-4">
+      <label for="description" class="text-gray-700 dark:text-gray-300">Descripción</label>
+      <textarea id="description" formControlName="description"
+        class="appearance-none bg-transparent border-b-2 border-teal-500 w-full text-gray-700 py-1 px-2 focus:outline-none dark:text-gray-300 dark:bg-gray-700"
+        placeholder="Descripción de la tarea" rows="3" required>
+        </textarea>
+    </div>
+
+    <!-- Select para el estado de la tarea -->
+    <div class="flex flex-col mb-4">
+      <label for="state" class="text-gray-700 dark:text-gray-300">Estado</label>
+      <select id="state" formControlName="state"
+        class="appearance-none bg-transparent border-b-2 border-teal-500 w-full text-gray-700 py-1 px-2 focus:outline-none dark:text-gray-300 dark:bg-gray-700"
+        required>
+        <option value="backlog">Backlog</option>
+        <option value="to-do">To-Do</option>
+        <option value="WIP">WIP</option>
+        <option value="done">Done</option>
+      </select>
+    </div>
+
+
+    <div class="flex justify-end">
+
+    </div>
+
+  </form>
+</ng-template>
+
+<ng-template #footer>
+
+
+  <button (click)="ModalCreateTaskCancel()"
+    class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded dark:bg-gray-500 dark:hover:bg-gray-600 dark:text-white-title-1"
+    type="submit">
+    cancelar
+  </button>
+
+  <button (click)="ModalCreateTaskCreate()"
+    class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded dark:bg-success dark:hover:bg-success-dark dark:text-white-title-1"
+    type="submit">
+    Agregar Tarea
+  </button>
+
+</ng-template>

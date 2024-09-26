@@ -1,9 +1,9 @@
-<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 ">
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 text-white-title-1 dark:text-dark-title-1">
 
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
     <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
       alt="Your Company">
-    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-gray-300">Sign in to your account</h2>
+    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight  ">Sign in to your account</h2>
   </div>
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -12,11 +12,6 @@
 
       <div class="mt-7 flex flex-col gap-2">
 
-        <!-- <button
-          class="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60"><img
-            src="https://www.svgrepo.com/show/512317/github-142.svg" alt="GitHub" class="h-[18px] w-[18px] ">
-          Continue with GitHub
-        </button> -->
 
         <button (click)="signInWithGoogle()"
           class="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white dark:bg-slate-950 dark:border-slate-700 p-2 text-sm font-medium text-black dark:text-white outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60">
@@ -24,25 +19,14 @@
           Continue with Google
         </button>
 
-        <button (click)="signInWithFacebook()"
-        class="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white dark:bg-slate-950 dark:border-slate-700 p-2 text-sm font-medium text-black dark:text-white outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60">
-        <fa-icon [icon]="faFacebook" ></fa-icon>
-        Continue with Facebook
-      </button>
 
 
-
-        <!-- <button
-          class="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60"><img
-            src="https://www.svgrepo.com/show/448234/linkedin.svg" alt="Google" class="h-[18px] w-[18px] ">Continue with
-          LinkedIn
-        </button> -->
       </div>
 
 
     </form>
 
-    <div class="flex w-full items-center gap-2 py-6 text-sm text-slate-600">
+    <div class="flex w-full items-center gap-2 py-6 text-sm text-white">
       <div class="h-px w-full bg-slate-200"></div>
       OR
       <div class="h-px w-full bg-slate-200"></div>

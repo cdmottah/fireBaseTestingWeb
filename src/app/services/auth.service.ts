@@ -2,77 +2,67 @@ import {
   ActionCodeSettings,
   Auth,
   createUserWithEmailAndPassword,
-  GoogleAuthProvider,
   FacebookAuthProvider,
+  GoogleAuthProvider,
   sendEmailVerification,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  User,
-  UserCredential,
-  sendPasswordResetEmail
+  UserCredential
   } from '@angular/fire/auth';
 import { AlertService } from './alert.service';
+import { FirebaseError } from 'firebase/app';
+import { Injectable } from '@angular/core';
 import {
-  BehaviorSubject,
   first,
   forkJoin,
   from,
   map,
   Observable,
   of,
-  tap
   } from 'rxjs';
-import { FirebaseError } from 'firebase/app';
-import { Injectable } from '@angular/core';
-import { UserService } from './user.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  user$ = new BehaviorSubject<User | null>(null)
+
   constructor(
     private _auth: Auth,
     private _alertService: AlertService,
-    private _userService: UserService
   ) { }
 
   register(email: string, password: string) {
     return from(createUserWithEmailAndPassword(this._auth, email, password)).pipe(
-      first(),
-      tap((res) => { this.user$.next(res.user) })
+      first()
+
     )
   }
 
   signIn(email: string, password: string) {
     return from(signInWithEmailAndPassword(this._auth, email, password)).pipe(
-      first(),
-      tap((res) => { this.user$.next(res.user) })
+      first()
     )
   }
 
   signInWithGoogle() {
     return from(signInWithPopup(this._auth, new GoogleAuthProvider())).pipe(
-      first(),
-      tap((res) => { this.user$.next(res.user) })
+      first()
     )
   }
 
   signInWithFacebook() {
     return from(signInWithPopup(this._auth, new FacebookAuthProvider())).pipe(
-      first(),
-      tap((res) => { this.user$.next(res.user) })
+      first()
     )
   }
 
   signOut() {
     return from(signOut(this._auth)).pipe(
       first(),
-      tap(res => {
-        this._userService.user$.next(null);
-      })
     )
   }
 
@@ -88,14 +78,13 @@ export class AuthService {
     const actionCodeSettings: ActionCodeSettings = {
       url: 'http://localhost:4200'
     }
-    const user = this.user$.getValue();
-    if (!user) return of(false)
-    return from(sendEmailVerification(user, actionCodeSettings)).pipe(first())
+
+    if (!this.user) return of(false)
+    return from(sendEmailVerification(this.user, actionCodeSettings)).pipe(first())
   }
 
   isneededRedirect = (userCredential: UserCredential): Observable<boolean> => {
     if (userCredential.user.emailVerified) {
-      this._userService.user$.next(userCredential.user);
       return of<true>(true)
     } else {
       return forkJoin([
@@ -114,4 +103,7 @@ export class AuthService {
     }
     return of('error');
   }
+
+
+  get user() { return this._auth.currentUser }
 }
